@@ -11,3 +11,7 @@
     - **singly_linkedlist.py** and **singly_linkedlist.cpp**: singly linked list implemented using Python3 and C++, support insert, delete, and top operations.
     - **doubly_linkedlist.py** and **doubly_linkedlist.cpp**: doubly linked list implemented using Python3 and C++, support insert, delete, and top operations.
     - **BTree.py** and **BTree.cpp**: binary tree implemented using Python3 and C++, show tree traversal (including inorder, preorder, and postorder, all with iterative and recusrive implementation).
+
+2. Data structure operations:
+    - stack:
+        
