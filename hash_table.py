@@ -62,15 +62,24 @@ class HashTable:
         while dummy:
             if dummy.val == key:
                 return dummy
+            dummy = dummy.nex
                     
             
             
 if __name__ == "__main__":
-    ht = HashTable(256)
+    ht = HashTable(3)
     ht.insert_val("James")
     ht.insert_val("Lily")
     ht.insert_val("Emma")
-    ht.delete_val("Emma")
+    ht.insert_val("Allen")
+    ht.insert_val("Gil")
+    ht.insert_val("Barry")
+    ht.insert_val("Hebe")
+    ht.delete_val("Barry")
     ht.delete_val("Lily")
+    ht.delete_val("Emma")
+    ht.delete_val("Allen")
+    ht.delete_val("Gil")
+    ht.delete_val("Hebe")
     ht.delete_val("James")
     
