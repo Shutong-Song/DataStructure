@@ -163,7 +163,51 @@ class RBT:
             self.delete_fixup(x)
     
     def delete_fixup(self, x):
-        pass
+        """
+        fixup the violation of RBT properties when original y is black
+        """
+        while x != self.root and x.color == black:
+            if x == x.parent.left:
+                w = x.parent.right
+                if w.color == "red":
+                    w.color = "black"
+                    x.parent.color = "red"
+                    self.left_rotate(x.parent)
+                    w = x.parent.right
+                if w.left.color == "black" and w.right.color == "black":
+                    w.color = "red"
+                    x = x.parent
+                elif w.right.color == "black":
+                    w.left.color = "black"
+                    w.color = "red"
+                    self.right_rotate(w)
+                    w = x.parent.right
+                    w.color = x.parent.color
+                    x.parent.color = "black"
+                    w.right.color = "black"
+                    self.left_rotate(x.parent)
+                    x = self.root
+            else:
+                w = x.parent.left
+                if w.color == "red":
+                    w.color = "black"
+                    x.parent.color = "red"
+                    self.right_rotate(x.parent)
+                    w = x.parent.left
+                if w.right.color == "black" and w.right.colro == "black":
+                    w.color = "red"
+                    x = x.parent
+                elif w.left.color == "black":
+                    w.left.color = "black"
+                    w.color = "red"
+                    self.left_rotate(w)
+                    w = x.parent.left
+                    w.color = x.parent.color
+                    x.parent.color = "black"
+                    x.left.color = "black"
+                    self.right_rotate(x.parent)
+                    x = self.root
+            x.color = "black" 
         
 if __name__ == "__main__":
     n1 = Node(23)
