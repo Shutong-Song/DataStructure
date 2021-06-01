@@ -166,28 +166,39 @@ class RBT:
         """
         fixup the violation of RBT properties when original y is black
         """
-        while x != self.root and x.color == black:
+        while x != self.root and x.color == "black":
             if x == x.parent.left:
                 w = x.parent.right
-                if w.color == "red":
+                if w.color == "red": #case 1: w is red so x.parent must be black
                     w.color = "black"
                     x.parent.color = "red"
                     self.left_rotate(x.parent)
                     w = x.parent.right
-                if w.left.color == "black" and w.right.color == "black":
+                #case 2: w is black and both w left and right are black
+                if w.left.color == "black" and w.right.color == "black": 
                     w.color = "red"
                     x = x.parent
-                elif w.right.color == "black":
+                #case 3: w is black and w.right.color == "black"
+                elif w.right.color == "black": 
                     w.left.color = "black"
                     w.color = "red"
                     self.right_rotate(w)
                     w = x.parent.right
+                    #convert case 3 into case 4: new w is black and w.left.color == "black"
+                    w.color = x.parent.color
+                    x.parent.color = "black"
+                    w.right.color = "black"
+                    self.left_rotate(x.parent)
+                    x = self.root
+                #case 4: new w is black and w.left.color == "black"
+                elif w.left.color == "black":
                     w.color = x.parent.color
                     x.parent.color = "black"
                     w.right.color = "black"
                     self.left_rotate(x.parent)
                     x = self.root
             else:
+                #sysmetric to the if statement, now x is on x.parent's right
                 w = x.parent.left
                 if w.color == "red":
                     w.color = "black"
@@ -197,17 +208,24 @@ class RBT:
                 if w.right.color == "black" and w.right.colro == "black":
                     w.color = "red"
                     x = x.parent
-                elif w.left.color == "black":
+                elif w.right.color == "black":
                     w.left.color = "black"
                     w.color = "red"
-                    self.left_rotate(w)
+                    self.right_rotate(w)
                     w = x.parent.left
                     w.color = x.parent.color
                     x.parent.color = "black"
-                    x.left.color = "black"
+                    w.right.color = "black"
+                    self.right_rotate(x.parent)
+                    x = self.root
+                elif w.left.color == "black":
+                    w.color = x.parennt.color
+                    x.parent.color = "black"
+                    w.right.color = "black"
                     self.right_rotate(x.parent)
                     x = self.root
             x.color = "black" 
+
         
 if __name__ == "__main__":
     n1 = Node(23)
